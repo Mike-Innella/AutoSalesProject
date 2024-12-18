@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/0af1f50848.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="styles.css" />
+    <title>Auto Sales</title>
+  </head>
+  <body>
+    <!--BACKGROUND-->
+
+    <img
+      src="./assets/vecteezy_abstract-blue-curve-corner-border-or-blue-wave-border-for-a_24509554.png"
+      alt="background"
+      class="border--stuff"
+    />
+
+    <!--NAV-->
+
+    <header class="nav__container">
+      <nav id="nav">
+        <img
+          src="./assets/952bb7b66625a66fdc38c8bcc9821161.png"
+          alt="car pic"
+          class="logo"
+        />
+        <ul class="nav__list">
+          <li class="nav__link"><a href="./index.html">Home</a></li>
+          <li class="nav__link"><a href="./cars.html">Find your car</a></li>
+          <li class="nav__link">
+            <button class="contact__btn">
+              <a
+                href="#"
+                class="nav__link--anchor"
+                onclick="toggleModal()"
+                >Contact</a
+              >
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!--LANDING PAGE-->
+
+    <main>
+      <section class="landing__page">
+        <div class="container">
+          <div class="row">
+            <h1 class="title">
+              <span class="color--text"> Find your dream car, today! </span>
+            </h1>
+            <p class="landing__text">
+              Use our <span class="color--text">platform</span> to find your
+              next automotive adventure.
+            </p>
+            <div class="search__bar--wrapper">
+              <form action="#">
+                <input
+                  type="text"
+                  class="search__bar"
+                  placeholder="Search make, model, year, or zipcode..."
+                  required
+                />
+                <button class="search__btn" type="submit">
+                  <i class="fa-solid fa-magnifying-glass magglass"></i>
+                </button>
+              </form>
+            </div>
+
+            <img src="./assets/car-icon-png-4257.png" alt="car" class="car" />
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

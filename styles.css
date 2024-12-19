@@ -238,25 +238,23 @@ button:hover .magglass {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #00000080;
   transition: all 400ms ease;
   z-index: -1;
   opacity: 0;
-  display: none;
 }
 
 .modal.active .modal__backdrop {
   opacity: 1;
   transition: all 400ms ease;
-  display: block;
 }
 
 .modal {
-  display: none;
+  visibility: hidden;
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -200%);
   width: 480px;
   height: 620px;
   background-color: #d70909;
@@ -268,8 +266,9 @@ button:hover .magglass {
 }
 
 .modal.active {
-  display: block;
+  visibility: visible;
   opacity: 1;
+  transform: translate(-50%, -50%);
 }
 
 .close {
@@ -283,7 +282,13 @@ button:hover .magglass {
 }
 
 .close:hover {
-  color: red;
+  color: #363636;
+  transform: translateY(-2px) scale(1.2);
+}
+
+.close:active {
+  color: #edf4a0;
+  transform: translateY(0) scale(0.8);
 }
 
 .modal__content {

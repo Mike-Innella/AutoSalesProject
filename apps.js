@@ -14,3 +14,9 @@ closeModalBtn.addEventListener("click", () => {
   modal.classList.remove("active");
   backdrop.classList.remove("active");
 });
+
+// Close Modal when clicking backdrop
+backdrop.addEventListener("click", () => {
+  modal.classList.remove("active");
+  backdrop.classList.remove("active");
+});

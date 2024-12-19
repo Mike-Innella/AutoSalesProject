@@ -10,7 +10,7 @@
 html {
   scroll-behavior: smooth;
   height: 100vh;
-  overflow: hidden;
+  overflow-y: hidden;
 }
 
 body {
@@ -88,6 +88,7 @@ input {
   height: 100vh;
   width: 100vw;
   filter: invert(1) brightness(125%);
+  pointer-events: none;
 }
 
 /* NAVIGATION */
@@ -193,7 +194,7 @@ input {
   margin: 0 auto;
   border: 2px solid #363636;
   width: fit-content;
-  border-radius: 24px;
+  border-radius: 36px;
   padding: 12px;
 }
 
@@ -214,7 +215,7 @@ input {
 }
 
 .magglass {
-  font-size: 32px;
+  font-size: 24px;
   color: #f5f5f5;
   transition: all 400ms ease;
 }
@@ -227,4 +228,106 @@ button:hover .magglass {
   filter: brightness(10%);
   margin-top: 60px;
   height: 256px;
+}
+
+/* MODAL */
+
+.modal__backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 400ms ease;
+  z-index: -1;
+  opacity: 0;
+  display: none;
+}
+
+.modal.active .modal__backdrop {
+  opacity: 1;
+  transition: all 400ms ease;
+  display: block;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+  height: 620px;
+  background-color: #d70909;
+  z-index: 100;
+  transition: all 400ms ease;
+  opacity: 0;
+  border-radius: 24px;
+  border: 2px solid #363636;
+}
+
+.modal.active {
+  display: block;
+  opacity: 1;
+}
+
+.close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 48px;
+  color: white;
+  cursor: pointer;
+  transition: all 400ms ease;
+}
+
+.close:hover {
+  color: red;
+}
+
+.modal__content {
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__label,
+.modal__title,
+.modal__para,
+.modal__item {
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+}
+
+.modal__title {
+  font-size: 24px;
+}
+
+.modal__item--textbox {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  resize: none;
+}
+
+.modal__item {
+  font-size: 20px;
+  padding: 8px;
+  margin: 12px;
+  border-bottom: 2px solid #f5f5f5;
+}
+
+.modal__submit {
+  background-color: #f5f5f5;
+  margin: 16px 8px 16px 8px;
+  font-size: 24px;
+  border-radius: 8px;
+  border: 2px solid #363636;
 }

@@ -7,7 +7,8 @@
       src="https://kit.fontawesome.com/0af1f50848.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css" defer />
+    <script src="./apps.js" defer></script>
     <title>Auto Sales</title>
   </head>
   <body>
@@ -31,11 +32,9 @@
         <ul class="nav__list">
           <li class="nav__link"><a href="./index.html">Home</a></li>
           <li class="nav__link"><a href="./cars.html">Find your car</a></li>
-          <li class="">
-            <button class="contact__btn">
-              <a href="#" class="nav__link--anchor" onclick="toggleModal()"
-                >Contact</a
-              >
+          <li>
+            <button id="openModal" class="contact__btn">
+              <a href="#" class="nav__link--anchor">Contact</a>
             </button>
           </li>
         </ul>
@@ -78,12 +77,39 @@
       <div class="modal__backdrop"></div>
       <div id="contactModal" class="modal">
         <div class="modal__content">
-          <span id="closeModalBtn" class="close" onclick="closeModal()"
+          <span id="closeModalBtn" class="close click" onclick="closeModal()"
             >&times;</span
           >
           <h2 class="modal__title">Contact Us</h2>
           <p class="modal__para">Have a question? Let us help!</p>
-          <form id="contactForm" class="modal__form"></form>
+          <form id="contactForm" class="modal__form">
+            <label for="name" class="modal__label">Your name</label>
+            <input
+              type="text"
+              class="modal__item"
+              id="name"
+              name="name"
+              required
+            />
+            <label for="email" class="modal__label">Your email</label>
+            <input
+              id="email"
+              type="email"
+              class="modal__item"
+              type="email"
+              name="email"
+              required
+            />
+            <label for="message" class="modal__label">Your message</label>
+            <textarea
+              name="message"
+              id="message"
+              rows="4"
+              class="modal__item modal__item--textbox"
+              required
+            ></textarea>
+            <button class="modal__submit">Submit</button>
+          </form>
         </div>
       </div>
     </main>

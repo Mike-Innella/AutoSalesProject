@@ -31,12 +31,9 @@
         <ul class="nav__list">
           <li class="nav__link"><a href="./index.html">Home</a></li>
           <li class="nav__link"><a href="./cars.html">Find your car</a></li>
-          <li class="nav__link">
+          <li class="">
             <button class="contact__btn">
-              <a
-                href="#"
-                class="nav__link--anchor"
-                onclick="toggleModal()"
+              <a href="#" class="nav__link--anchor" onclick="toggleModal()"
                 >Contact</a
               >
             </button>
@@ -76,6 +73,19 @@
           </div>
         </div>
       </section>
+
+      <!--MODAL-->
+      <div class="modal__backdrop"></div>
+      <div id="contactModal" class="modal">
+        <div class="modal__content">
+          <span id="closeModalBtn" class="close" onclick="closeModal()"
+            >&times;</span
+          >
+          <h2 class="modal__title">Contact Us</h2>
+          <p class="modal__para">Have a question? Let us help!</p>
+          <form id="contactForm" class="modal__form"></form>
+        </div>
+      </div>
     </main>
   </body>
 </html>

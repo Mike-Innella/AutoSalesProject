@@ -383,7 +383,7 @@ button:hover .magglass {
   padding: 12px;
 }
 
-.overlay--loading{
+.overlay--loading {
   background-color: #363636;
   z-index: 51;
 }

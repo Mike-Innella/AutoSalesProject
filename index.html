@@ -7,8 +7,10 @@
       src="https://kit.fontawesome.com/0af1f50848.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="styles.css" defer />
+    <link rel="stylesheet" href="styles.css" />
     <script src="./apps.js" defer></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
     <title>Auto Sales</title>
   </head>
   <body>
@@ -30,8 +32,12 @@
           class="logo"
         />
         <ul class="nav__list">
-          <li class="nav__link"><a href="./index.html">Home</a></li>
-          <li class="nav__link"><a href="./cars.html">Find your car</a></li>
+          <li class="nav__link">
+            <a href="./index.html" class="nav__link--anchor">Home</a>
+          </li>
+          <li class="nav__link">
+            <a href="./cars.html" class="nav__link--anchor">Find your car</a>
+          </li>
           <li>
             <button id="openModal" class="contact__btn">
               <a href="#" class="nav__link--anchor">Contact</a>
@@ -107,8 +113,16 @@
               class="modal__item modal__item--textbox"
               required
             ></textarea>
-            <button class="modal__submit">Submit</button>
+            <button id="submitBtn" class="modal__submit click" type="submit">
+              Submit
+            </button>
           </form>
+        </div>
+        <div class="modal__overlay overlay--loading hidden">
+          <i class="fa-solid fa-gear spinner"></i>
+        </div>
+        <div class="modal__overlay overlay--success hidden">
+          Thank you for your message, we will respond soon!
         </div>
       </div>
     </main>

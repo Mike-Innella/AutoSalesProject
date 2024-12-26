@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/0af1f50848.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="stylesCars.css" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@100;400;700&display=swap");
@@ -11,16 +15,42 @@
   </head>
   <body>
     <header>
-      <nav class="nav__header">
-        <div class="car__filter"></div>
+      <div class="car__filter"></div>
+      <img
+        src="./assets/25_years_car_side_on.png"
+        alt="car"
+        class="car__header"
+      />
+      <div class="nav--wrapper">
         <img
-          src="./assets/25_years_car_side_on.png"
-          alt="car"
-          class="car__header"
+          src="./assets/952bb7b66625a66fdc38c8bcc9821161.png"
+          alt="car pic"
+          class="logo"
         />
-        <button class="back__btn"><a href="./index.html">Back</a></button>
-      </nav>
+        <nav class="nav__header">
+          <button class="back__btn">
+            <a href="./index.html">Home</a>
+          </button>
+        </nav>
+      </div>
+      <div class="search--container">
+        <h2 class="search__title">Begin your search now!</h2>
+        <div class="search__bar--wrapper">
+          <form action="#">
+            <input
+              type="text"
+              class="search__bar"
+              placeholder="Search make, model, year, or zipcode..."
+              required
+            />
+            <button class="search__btn" type="submit">
+              <i class="fa-solid fa-magnifying-glass magglass"></i>
+            </button>
+          </form>
+        </div>
+      </div>
     </header>
+
     <main></main>
   </body>
 </html>

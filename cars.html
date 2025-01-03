@@ -14,39 +14,46 @@
     <title>CarSearch</title>
   </head>
   <body>
+    <!--Header-->
+
     <header>
-      <div class="car__filter"></div>
-      <img
-        src="./assets/25_years_car_side_on.png"
-        alt="car"
-        class="car__header"
-      />
-      <div class="nav--wrapper">
+      <div class="header__wrapper">
+        <div class="car__filter"></div>
         <img
-          src="./assets/952bb7b66625a66fdc38c8bcc9821161.png"
-          alt="car pic"
-          class="logo"
+          src="./assets/25_years_car_side_on.png"
+          alt="car"
+          class="car__header"
         />
-        <nav class="nav__header">
-          <button class="back__btn">
-            <a href="./index.html">Home</a>
-          </button>
-        </nav>
-      </div>
-      <div class="search--container">
-        <h2 class="search__title">Begin your search now!</h2>
-        <div class="search__bar--wrapper">
-          <form action="#">
-            <input
-              type="text"
-              class="search__bar"
-              placeholder="Search make, model, year, or zipcode..."
-              required
-            />
-            <button class="search__btn" type="submit">
-              <i class="fa-solid fa-magnifying-glass magglass"></i>
+        <div class="nav--wrapper">
+          <img
+            src="./assets/952bb7b66625a66fdc38c8bcc9821161.png"
+            alt="car pic"
+            class="logo"
+          />
+          <nav class="nav__header">
+            <button class="back__btn">
+              <a href="./index.html">Home</a>
             </button>
-          </form>
+          </nav>
+        </div>
+
+        <!--SEARCH BAR-->
+
+        <div class="search--container">
+          <h2 class="search--title">Browse Our Cars!</h2>
+          <div class="search__bar--wrapper">
+            <form action="#">
+              <input
+                type="text"
+                class="search__bar"
+                placeholder="Search make, model, year, or zipcode..."
+                required
+              />
+              <button class="search__btn" type="submit">
+                <i class="fa-solid fa-magnifying-glass magglass"></i>
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </header>

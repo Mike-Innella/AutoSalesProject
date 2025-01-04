@@ -8,6 +8,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="stylesCars.css" />
+    <script src="./carsApps.js" defer></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@100;400;700&display=swap");
     </style>
@@ -58,6 +59,43 @@
       </div>
     </header>
 
-    <main></main>
+    <!--MAIN BODY-->
+    <main>
+      <div class="container">
+        <div class="row">
+          <section class="search__price--wrapper">
+            <h2>Search Results:</h2>
+            <div class="slider-container">
+              <div class="range-slider">
+                <input
+                  type="range"
+                  id="minRange"
+                  min="1000"
+                  max="100000"
+                  step="500"
+                  value="20000"
+                  oninput="updateRange()"
+                />
+                <input
+                  type="range"
+                  id="maxRange"
+                  min="1000"
+                  max="100000"
+                  step="500"
+                  value="80000"
+                  oninput="updateRange()"
+                />
+                <div class="range-track" id="rangeTrack"></div>
+              </div>
+              <div class="price-display">
+                <h2>Price Range:</h2>
+                <span id="minRangeLabel">$20,000</span> -
+                <span id="maxRangeLabel">$80,000</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

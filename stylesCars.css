@@ -85,7 +85,9 @@ input {
 
 .header__wrapper {
   display: flex;
-  position: fixed;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .logo {
@@ -106,6 +108,7 @@ input {
   justify-content: space-between;
   width: 100%;
   padding: 12px;
+  top: 0;
 }
 
 .car__filter {
@@ -199,4 +202,75 @@ input {
 
 button:hover .magglass {
   color: #363636;
+}
+
+/* MAIN BODY */
+
+.search__price--wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.slider-container {
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  padding: 20px 0;
+}
+
+.range-slider {
+  position: relative;
+  height: 6px;
+  background: #ddd;
+  border-radius: 5px;
+}
+
+.range-slider input[type="range"] {
+  position: absolute;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: none; /* Disables interactions on the background track */
+}
+
+.range-slider input[type="range"]::-webkit-slider-thumb {
+  pointer-events: auto; /* Enable interaction only for the thumbs */
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #007bff;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.range-slider input[type="range"]::-moz-range-thumb {
+  pointer-events: auto;
+  width: 20px;
+  height: 20px;
+  background: #007bff;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.range-slider .range-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6px;
+  background: #007bff;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.price-display {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }

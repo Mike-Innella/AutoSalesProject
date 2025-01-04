@@ -223,6 +223,8 @@ button:hover .magglass {
   height: 6px;
   background: #ddd;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
 }
 
 .range-slider input[type="range"] {

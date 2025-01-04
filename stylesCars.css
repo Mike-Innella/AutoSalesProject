@@ -209,13 +209,18 @@ button:hover .magglass {
 .search__price--wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .slider-container {
   width: 100%;
   max-width: 400px;
   position: relative;
-  padding: 20px 0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
 }
 
 .range-slider {
@@ -240,7 +245,7 @@ button:hover .magglass {
   -webkit-appearance: none;
   width: 20px;
   height: 20px;
-  background: #007bff;
+  background: #0943d7;
   border-radius: 50%;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   cursor: pointer;
@@ -252,7 +257,7 @@ button:hover .magglass {
   pointer-events: auto;
   width: 20px;
   height: 20px;
-  background: #007bff;
+  background: #0943d7;
   border-radius: 50%;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   cursor: pointer;
@@ -265,7 +270,7 @@ button:hover .magglass {
   top: 0;
   left: 0;
   height: 6px;
-  background: #007bff;
+  background: #0943d7;
   border-radius: 5px;
   z-index: 1;
 }
@@ -275,4 +280,5 @@ button:hover .magglass {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 0 0 12px 0;
 }

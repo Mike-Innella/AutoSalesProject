@@ -282,3 +282,52 @@ button:hover .magglass {
   align-items: center;
   padding: 0 0 12px 0;
 }
+
+/* CAR CARDS */
+/* Styling for car card container */
+.car__card--wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content:space-between;
+}
+
+/* Individual car card styling */
+.car__card {
+  border: 2px solid #ddd;
+  padding: 16px;
+  width: 280px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background-color: #fff;
+}
+
+/* Image styling for the car */
+.car__image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+/* Styling for the title and text content */
+.car__card h2 {
+  margin-top: 12px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.car__card p {
+  font-size: 1rem;
+  color: #555;
+  margin: 4px 0;
+}
+
+/* Styling for the price */
+.car__card .price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: green;
+  margin-top: 12px;
+}

@@ -1,29 +1,28 @@
-// PRICE SLIDER
-
-function updateRange() {
+document.addEventListener("DOMContentLoaded", () => {
   const minRange = document.getElementById("minRange");
   const maxRange = document.getElementById("maxRange");
+  const rangeTrack = document.getElementById("rangeTrack");
   const minRangeLabel = document.getElementById("minRangeLabel");
   const maxRangeLabel = document.getElementById("maxRangeLabel");
-  const rangeTrack = document.getElementById("rangeTrack");
 
-  const minValue = parseInt(minRange.value);
-  const maxValue = parseInt(maxRange.value);
-  const rangeMin = parseInt(minRange.min);
-  const rangeMax = parseInt(maxRange.max);
+  function updateRange() {
+    const minVal = parseInt(minRange.value);
+    const maxVal = parseInt(maxRange.value);
 
-  if (minValue > maxValue) {
-    minRange.value = maxValue;
+    // Update range track
+    const minPercentage =
+      ((minVal - minRange.min) / (minRange.max - minRange.min)) * 100;
+    const maxPercentage =
+      ((maxVal - maxRange.min) / (maxRange.max - maxRange.min)) * 100;
+
+    rangeTrack.style.left = `${minPercentage}%`;
+    rangeTrack.style.width = `${maxPercentage - minPercentage}%`;
+
+    // Update price labels
+    minRangeLabel.textContent = `$${minVal.toLocaleString()}`;
+    maxRangeLabel.textContent = `$${maxVal.toLocaleString()}`;
   }
 
-  minRangeLabel.textContent = `$${minValue.toLocaleString()}`;
-  maxRangeLabel.textContent = `$${maxValue.toLocaleString()}`;
-
-  const minPercent = ((minValue - rangeMin) / (rangeMax - rangeMin)) * 100;
-  const maxPercent = ((maxValue - rangeMin) / (rangeMax - rangeMin)) * 100;
-
-  rangeTrack.style.left = `${minPercent}%`;
-  rangeTrack.style.right = `${100 - maxPercent}%`;
-}
-
-// CAR CARDS & API
+  // Initialize the range
+  updateRange();
+});

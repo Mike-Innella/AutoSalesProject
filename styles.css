@@ -222,10 +222,15 @@ button:hover .magglass {
   color: #363636;
 }
 
+.car-wrapper {
+  position: absolute;
+  width: 100%;
+}
+
 .car {
   filter: brightness(10%) invert(1);
-  margin-top: 48px;
   height: 256px;
+ 
 }
 
 /* MODAL */

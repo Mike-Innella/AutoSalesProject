@@ -1,112 +1,109 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ==========================
-  // Range Slider Section
-  // ==========================
+  // **DOM Element References**
   const minRange = document.getElementById("minRange");
   const maxRange = document.getElementById("maxRange");
   const rangeTrack = document.getElementById("rangeTrack");
   const minRangeLabel = document.getElementById("minRangeLabel");
   const maxRangeLabel = document.getElementById("maxRangeLabel");
+  const carWrapper = document.getElementById("car__card--wrapper");
+  const modelInput = document.getElementById("model");
+  const makeInput = document.getElementById("make");
+  const yearInput = document.getElementById("year");
 
-  // Function to update the range slider position and labels
-  function updateRange() {
-    let minVal = parseInt(minRange.value);
-    let maxVal = parseInt(maxRange.value);
+  // **Update Range and Fetch Car Data**
+  const updateRange = () => {
+    let minVal = parseInt(minRange.value, 10);
+    let maxVal = parseInt(maxRange.value, 10);
 
-    // Ensure min value is always less than max value
+    // Ensure min value is not greater than max value
     if (minVal >= maxVal) {
       minVal = maxVal - 1;
       minRange.value = minVal;
     }
 
+    // Calculate the percentage for the range track
     const minPercentage =
       ((minVal - minRange.min) / (minRange.max - minRange.min)) * 100;
     const maxPercentage =
       ((maxVal - maxRange.min) / (maxRange.max - maxRange.min)) * 100;
 
+    // Update the range track width and position
     rangeTrack.style.left = `${minPercentage}%`;
     rangeTrack.style.width = `${maxPercentage - minPercentage}%`;
 
+    // Update the labels for min and max values
     minRangeLabel.textContent = `$${minVal.toLocaleString()}`;
     maxRangeLabel.textContent = `$${maxVal.toLocaleString()}`;
-
     minRangeLabel.style.left = `calc(${minPercentage}% - 20px)`;
     maxRangeLabel.style.left = `calc(${maxPercentage}% - 20px)`;
 
-    // Trigger car data fetch based on updated slider values
-    fetchCarData();
-  }
+    // Fetch car data based on the selected range
+    fetchCarData(minVal, maxVal);
+  };
 
-  // Event listeners for range slider changes
+  // **Event Listeners for Range Inputs**
   minRange.addEventListener("input", updateRange);
   maxRange.addEventListener("input", updateRange);
-  minRange.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft") minRange.value--;
-    if (e.key === "ArrowRight") minRange.value++;
-    updateRange();
-  });
-  maxRange.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowLeft") maxRange.value--;
-    if (e.key === "ArrowRight") maxRange.value++;
-    updateRange();
-  });
 
-  // ==========================
-  // Car Data Fetching Section
-  // ==========================
-  const carWrapper = document.getElementById("car__card--wrapper");
+  // **Fetch Car Data from API**
+  const fetchCarData = async (minPrice, maxPrice) => {
+    const model = modelInput.value.trim();
+    const make = makeInput.value.trim();
+    const year = yearInput.value.trim();
 
-  // Function to fetch car data from the API
-  async function fetchCarData() {
+    // Skip fetch if any input is empty
+    if (!model || !make || !year) return;
+
+    const requestUrl = `https://api.api-ninjas.com/v1/cars?model=${model}&make=${make}&year=${year}&min_price=${minPrice}&max_price=${maxPrice}`;
+
     try {
-      const response = await fetch(
-        `https://api.api-ninjas.com/v1/cars?min_price=${minRange.value}&max_price=${maxRange.value}`,
-        {
-          method: "GET",
-          headers: {
-            "X-Api-Key": "EF0QATKkSO8Bo9CprmH1pQ==mz3s8rwiVSK9Nk1r", // Replace with your actual API key
-          },
-        }
-      );
+      // Send the fetch request to the API
+      const response = await fetch(requestUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Api-Key": "FPgsOZsD1A19c5eNmtj3XJ0FtE9BXmdkO6IMHDQg",
+        },
+      });
+
+      // If the response is not OK, skip further processing
+      if (!response.ok) return;
 
       const data = await response.json();
-      console.log(data); // Log the data to check if the fetch was successful
-      displayCars(data);
+      // If the response is an array, display the cars
+      if (Array.isArray(data)) displayCars(data);
     } catch (error) {
       console.error("Error fetching car data:", error);
     }
-  }
+  };
 
-  // ==========================
-  // Display Cars Section
-  // ==========================
-  // Function to display the cars as cards
-  function displayCars(cars) {
-    // Clear the car wrapper before adding new cards
-    carWrapper.innerHTML = "";
+  // **Display Cars on the Page**
+  const displayCars = (cars) => {
+    carWrapper.innerHTML = cars.length
+      ? cars
+          .map(
+            (car) => `
+              <div class="car__card">
+                <img src="${car.image || "placeholder.jpg"}" alt="${
+              car.name || "Unknown Model"
+            }" class="car__card--image">
+                <div class="car__card--details">
+                  <h3 class="car__card--name">${
+                    car.name || "Unknown Model"
+                  }</h3>
+                  <p class="car__card--description">${
+                    car.description || "No description available"
+                  }</p>
+                  <p class="car__card--price">$${(
+                    car.price || 0
+                  ).toLocaleString()}</p>
+                </div>
+              </div>`
+          )
+          .join("")
+      : "<p>No cars found within the selected range.</p>";
+  };
 
-    // Loop through the cars and create a card for each
-    cars.forEach((car) => {
-      const carCard = document.createElement("div");
-      carCard.classList.add("car__card");
-
-      // Card content
-      carCard.innerHTML = `
-        <img src="${car.image}" alt="${car.name}" class="car__card--image">
-        <div class="car__card--details">
-          <h3 class="car__card--name">${car.name}</h3>
-          <p class="car__card--description">${car.description}</p>
-          <p class="car__card--price">$${car.price.toLocaleString()}</p>
-        </div>
-      `;
-
-      // Append the new car card to the wrapper
-      carWrapper.appendChild(carCard);
-    });
-  }
-
-  // ==========================
-  // Initial Fetch on Page Load
-  // ==========================
-  fetchCarData(); // Initial fetch when the page loads
+  // **Initial Call to Update Range and Display Cars**
+  updateRange();
 });

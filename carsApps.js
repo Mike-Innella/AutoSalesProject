@@ -43,13 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Process the search query for make, model, and year
     const [make, model, year] = searchQuery.split(" ");
-    let requestUrl = "https://carapi.app/api"; // Updated base URL
+    let requestUrl = "https://api.api-ninjas.com/v1/cars?make=toyota";
 
     const params = new URLSearchParams();
 
     // Append query parameters based on inputs
-    if (minPrice >= 0) params.append("min_price", minPrice); // Allow 0 minPrice
-    if (maxPrice > 0) params.append("max_price", maxPrice); // Ensure maxPrice is valid
+    if (minPrice >= 0) params.append("price_min", minPrice);
+    if (maxPrice > 0) params.append("price_max", maxPrice);
     if (make) params.append("make", make);
     if (model) params.append("model", model);
     if (year) params.append("year", year);
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer 93a39874-c6a6-4c25-8a6f-223eaf7d68cb", // Add API key in the Authorization header
+          "X-Api-Key": "FPgsOZsD1A19c5eNmtj3XJ0FtE9BXmdkO6IMHDQg", // Add API key in the X-Api-Key header
         },
       });
 

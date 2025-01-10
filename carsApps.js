@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (minVal >= maxVal) minRange.value = maxVal - 1;
 
     const minPercentage = ((minVal - minRange.min) / (minRange.max - minRange.min)) * 100;
-    const maxPercentage = ((maxVal - maxRange.min) / (maxRange.max - minRange.min)) * 100;
+    const maxPercentage = ((maxVal - minRange.min) / (maxRange.max - minRange.min)) * 100;
 
     rangeTrack.style.left = `${minPercentage}%`;
     rangeTrack.style.width = `${maxPercentage - minPercentage}%`;
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     maxRangeLabel.style.left = `calc(${maxPercentage}% - 20px)`;
 
     // Get search query
-    const searchQuery = searchBar.value.toLowerCase();
+    const searchQuery = searchBar.value.trim().toLowerCase();
     fetchCarData(minVal, maxVal, searchQuery);
   };
 
@@ -39,37 +39,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Fetch Car Data from API
   const fetchCarData = async (minPrice, maxPrice, searchQuery) => {
-    // Log the values for debugging
     console.log("Fetching data with:", { minPrice, maxPrice, searchQuery });
 
+    // Process the search query for make, model, and year
     const [make, model, year] = searchQuery.split(" ");
-    let requestUrl = `https://api.api-ninjas.com/v1/cars?min_price=${minPrice}&max_price=${maxPrice}`;
+    let requestUrl = "https://carapi.app/api"; // Updated base URL
 
-    // Append search query parameters if available
-    if (make) requestUrl += `&make=${make}`;
-    if (model) requestUrl += `&model=${model}`;
-    if (year) requestUrl += `&year=${year}`;
+    const params = new URLSearchParams();
 
-    console.log("API Request URL:", requestUrl); // Log URL for debugging
+    // Append query parameters based on inputs
+    if (minPrice >= 0) params.append("min_price", minPrice); // Allow 0 minPrice
+    if (maxPrice > 0) params.append("max_price", maxPrice); // Ensure maxPrice is valid
+    if (make) params.append("make", make);
+    if (model) params.append("model", model);
+    if (year) params.append("year", year);
+
+    // Add parameters to the request URL
+    requestUrl += `?${params.toString()}`;
+
+    console.log("API Request URL:", requestUrl); // Output URL for debugging
 
     try {
       const response = await fetch(requestUrl, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "X-Api-Key": "FPgsOZsD1A19c5eNmtj3XJ0FtE9BXmdkO6IMHDQg", // Ensure this is correct
+          "Authorization": "Bearer 93a39874-c6a6-4c25-8a6f-223eaf7d68cb", // Add API key in the Authorization header
         },
       });
 
       if (response.ok) {
         const data = await response.json();
-        if (Array.isArray(data)) {
-          displayCars(data); // Display cars if valid data is returned
-        } else {
-          console.error("No cars found or invalid data format");
-        }
+        displayCars(data);
       } else {
-        console.error("Error fetching data:", response.status, response.statusText);
+        const errorText = await response.text();
+        console.error("Error fetching data:", response.status, response.statusText, errorText);
       }
     } catch (error) {
       console.error("Error fetching car data:", error);
@@ -79,8 +83,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Display Cars Function
   const displayCars = (cars) => {
     carWrapper.innerHTML = cars.length
-      ? cars.map(
-          (car) => `
+      ? cars
+          .map(
+            (car) => `        
           <div class="car__card">
             <img src="${car.image || "placeholder.jpg"}" alt="${car.name || "Unknown Model"}" class="car__card--image">
             <div class="car__card--details">
@@ -89,10 +94,11 @@ document.addEventListener("DOMContentLoaded", () => {
               <p class="car__card--price">$${(car.price || 0).toLocaleString()}</p>
             </div>
           </div>`
-        ).join("")
+          )
+          .join(" ")
       : `<p>No cars found for this search.</p>`;
   };
 
   // Initial Call to Update Range and Display Cars
-  updateRange();
+  updateRange(); // This will call fetchCarData with default parameters on page load
 });
